@@ -20,3 +20,22 @@ computerRouter.get('/zone/:zoneName', (req: Request, res: Response) => {
 		res.status(400).json({ message: 'Такой зоны нет или она пустая'})
 })
 
+computerRouter.post('/', (req: Request, res: Response) => {
+	const {name, zone, pricePerHour} = req.body
+
+	if(!(name && zone && pricePerHour)) {
+		return res.status(400).json({ message: 'name, zone или pricePerHour отсутствует в теле запроса'})
+	}
+
+	const newPC: IPC = {
+		id: `${Date.now()}`,
+		name,
+		zone,
+		status: 'FREE',
+		pricePerHour
+	}
+
+	computersDB.push(newPC)
+
+	res.status(201).json({ message: 'ПК успешно добавлен!', PC: newPC})
+})
