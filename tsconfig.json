@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"esModuleInterop": true,
+		"rootDir": "./src",
+		"outDir": "./dist",
+		"module": "commonjs",
+		"noImplicitAny": true,
+		"removeComments": true,
+
+	},
+	"include": ["src/**/*"]
+}
