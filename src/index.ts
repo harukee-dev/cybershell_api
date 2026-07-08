@@ -10,5 +10,3 @@ app.get('/', (req: Request, res: Response) => {
 app.listen(PORT, () => {
 	console.log(`Сервер запущен на порте ${PORT}`)
 })
-
-// test
