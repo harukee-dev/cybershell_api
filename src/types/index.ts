@@ -2,6 +2,9 @@
 // Обычная, Вип, Стримерская
 export type ZoneType = 'COMMON' | 'VIP' | 'STREAMER'
 
+// разновидности игровых зон в виде константы для более простых проверок в некоторых обработчиках
+export const ZoneTypes = ['COMMON', 'VIP', 'STREAMER']
+
 // тип статуса пк, тоже union type, в котором на выбор 3 значения
 // Свободен, Занят, Техобслуживание
 export type PcStatus = 'FREE' | 'BUSY' | 'MAINTENANCE'
