@@ -1,4 +1,4 @@
-import {IPC} from './types/index'
+import {IPC, IUser} from './types/index'
 
 export const computersDB: IPC[] = [
 	{
@@ -24,3 +24,25 @@ export const computersDB: IPC[] = [
 	}
 ]
 
+export const usersDB: IUser[] = [
+	{
+		id: '3123k1n3128931nkj',
+		username: 'near2die',
+		balance: 3,
+		isBanned: false,
+		
+	},
+	{
+		id: 'oi213njkn998213n1jk',
+		username: 'master_sniper2000',
+		balance: 0,
+		isBanned: true,
+
+	},
+	{
+		id: 'klm32132109ml,1n08',
+		username: 'forniter213',
+		balance: 1.25,
+		isBanned: false
+	}
+]

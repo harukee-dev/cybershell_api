@@ -17,3 +17,10 @@ export interface IPC {
 	status: PcStatus, // текущий статус пк
 	pricePerHour: number // часовая стоимость пк
 }
+
+export interface IUser {
+	id: string,
+	username: string,
+	balance: number,
+	isBanned: boolean
+}
