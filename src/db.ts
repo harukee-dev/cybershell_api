@@ -27,7 +27,7 @@ export const computersDB: IPC[] = [
 export const usersDB: IUser[] = [
 	{
 		id: '3123k1n3128931nkj',
-		username: 'near2die',
+		username: 'pizduk',
 		balance: 3,
 		isBanned: false,
 		
