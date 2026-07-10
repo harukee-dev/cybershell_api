@@ -1,7 +1,8 @@
 import Router, {Request, Response} from 'express'
 import { usersDB } from '../db'
-import { createUserSchema } from '../validators/usersValidator'
+import { createUserSchema, topupSchema } from '../validators/usersValidator'
 import { validate } from '../middlewares/validate'
+import { IUser } from '../types'
 
 export const userRouter = Router()
 
@@ -21,5 +22,34 @@ userRouter.post('/', validate(createUserSchema), (req: Request, res: Response) =
 
 	usersDB.push(newUser)
 
-	res.status(200).json({ message: "Пользователь успешно создан", user: newUser})
+	res.status(200).json({ message: 'Пользователь успешно создан', user: newUser})
+})
+
+userRouter.post('/:id/topup', validate(topupSchema), (req: Request, res: Response) => {
+	const {id} = req.params
+	const {amount} = req.body
+
+	if(usersDB.filter((el: IUser) => el.id === id).length <= 0) 
+		return res.status(404).json({ message: 'Пользователь не найден'})
+
+	usersDB.map((el: IUser) => {
+		if(el.id === id) el.balance += amount
+	})
+
+	res.status(200).json({ message: 'Баланс пользователя успешно пополнен'})
+})
+
+userRouter.post('/:id/ban', (req: Request, res: Response) => {
+	const {id} = req.params
+
+	console.log(id)
+	
+	usersDB.forEach((user: IUser) => {
+		if(user.id == id) {
+			user.isBanned = true
+			return res.status(200).json({ message: 'Пользователь успешно забанен'})
+		}
+	})
+
+	res.status(404).json({ message: 'Пользователь не найден'})
 })

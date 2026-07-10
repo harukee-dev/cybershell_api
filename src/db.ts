@@ -1,6 +1,6 @@
 import {IPC, IUser} from './types/index'
 
-export const computersDB: IPC[] = [
+export let computersDB: IPC[] = [
 	{
 		id: 'fnajs12das24201mekldsma',
 		name: 'PC-01',
@@ -24,7 +24,7 @@ export const computersDB: IPC[] = [
 	}
 ]
 
-export const usersDB: IUser[] = [
+export let usersDB: IUser[] = [
 	{
 		id: '3123k1n3128931nkj',
 		username: 'pizduk',
