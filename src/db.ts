@@ -1,6 +1,6 @@
-import {IPC, IUser} from './types/index'
+import {IPC, ISession, IUser} from './types/index'
 
-export let computersDB: IPC[] = [
+export const computersDB: IPC[] = [
 	{
 		id: 'fnajs12das24201mekldsma',
 		name: 'PC-01',
@@ -24,7 +24,7 @@ export let computersDB: IPC[] = [
 	}
 ]
 
-export let usersDB: IUser[] = [
+export const usersDB: IUser[] = [
 	{
 		id: '3123k1n3128931nkj',
 		username: 'pizduk',
@@ -46,3 +46,5 @@ export let usersDB: IUser[] = [
 		isBanned: false
 	}
 ]
+
+export const sessionsDB: ISession[] = []

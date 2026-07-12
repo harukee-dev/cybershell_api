@@ -24,3 +24,11 @@ export interface IUser {
 	balance: number,
 	isBanned: boolean
 }
+
+export interface ISession {
+	id: string,
+	userId: string,
+	pcId: string,
+	startTime: Date,
+	durationHours: number
+}

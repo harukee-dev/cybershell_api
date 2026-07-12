@@ -1,6 +1,7 @@
 import express, {Request, Response} from 'express'
 import {computerRouter} from './routes/computerRoutes'
 import {userRouter} from './routes/userRoutes'
+import {sessionRouter} from './routes/sessionRoutes'
 import "dotenv/config"
 import cors from 'cors'
 
@@ -12,6 +13,7 @@ app.use(cors())
 
 app.use('/api/computers', computerRouter)
 app.use('/api/users', userRouter)
+app.use('/api/sessions', sessionRouter)
 
 app.get('/', (req: Request, res: Response) => {
 	res.json({ message: 'Hello world!'})
