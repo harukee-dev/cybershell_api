@@ -19,9 +19,51 @@ export const computersDB: IPC[] = [
 		id: '1k3m912l3mk120m2013mklm',
 		name: 'PC-03',
 		zone: 'VIP',
+		status: 'FREE',
+		pricePerHour: 1.5
+	},
+	{
+		id: 'fnajs12das24201mekldsma',
+		name: 'PC-04',
+		zone: 'COMMON',
+		status: 'FREE',
+		pricePerHour: 1
+	},
+	{
+		id: 'fnajs12das24201mekldsma',
+		name: 'PC-04',
+		zone: 'COMMON',
+		status: 'MAINTENANCE',
+		pricePerHour: 1
+	},
+	{
+		id: 'dl21k3mddmdlasm012m0291',
+		name: 'PC-02',
+		zone: 'STREAMER',
+		status: 'BUSY',
+		pricePerHour: 2.25
+	},
+	{
+		id: 'dl21k3mddmdlasm012m0291',
+		name: 'PC-02',
+		zone: 'STREAMER',
+		status: 'MAINTENANCE',
+		pricePerHour: 2.25
+	},
+	{
+		id: '1k3m912l3mk120m2013mklm',
+		name: 'PC-03',
+		zone: 'VIP',
+		status: 'BUSY',
+		pricePerHour: 1.5
+	},
+	{
+		id: '1k3m912l3mk120m2013mklm',
+		name: 'PC-03',
+		zone: 'VIP',
 		status: 'MAINTENANCE',
 		pricePerHour: 1.5
-	}
+	},
 ]
 
 export const usersDB: IUser[] = [
