@@ -3,6 +3,7 @@ import { computersDB } from '../db'
 import { IPC } from '../types'
 import { createPcSchema } from '../validators/computersValidator'
 import { validate } from '../middlewares/validate'
+import { isAdmin } from '../middlewares/auth'
 
 export const computerRouter = Router()
 
@@ -22,7 +23,7 @@ computerRouter.get('/zone/:zoneName', (req: Request, res: Response) => {
 		res.status(400).json({ message: 'Такой зоны нет или она пустая'})
 })
 
-computerRouter.post('/', validate(createPcSchema), (req: Request, res: Response) => {
+computerRouter.post('/', isAdmin(), validate(createPcSchema), (req: Request, res: Response) => {
 		const {name, zone, pricePerHour} = req.body
 
 		const newPC: IPC = {

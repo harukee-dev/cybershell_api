@@ -3,6 +3,7 @@ import { usersDB } from '../db'
 import { createUserSchema, topupSchema } from '../validators/usersValidator'
 import { validate } from '../middlewares/validate'
 import { IUser } from '../types'
+import { isAdmin } from '../middlewares/auth'
 
 export const userRouter = Router()
 
@@ -25,7 +26,7 @@ userRouter.post('/', validate(createUserSchema), (req: Request, res: Response) =
 	res.status(200).json({ message: 'Пользователь успешно создан', user: newUser})
 })
 
-userRouter.post('/:id/topup', validate(topupSchema), (req: Request, res: Response) => {
+userRouter.post('/:id/topup', isAdmin(), validate(topupSchema), (req: Request, res: Response) => {
 	const {id} = req.params
 	const {amount} = req.body
 
@@ -39,7 +40,7 @@ userRouter.post('/:id/topup', validate(topupSchema), (req: Request, res: Respons
 	res.status(200).json({ message: 'Баланс пользователя успешно пополнен'})
 })
 
-userRouter.post('/:id/ban', (req: Request, res: Response) => {
+userRouter.post('/:id/ban', isAdmin(), (req: Request, res: Response) => {
 	const {id} = req.params
 
 	console.log(id)
