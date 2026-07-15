@@ -3,7 +3,7 @@ import { isAdmin } from '../middlewares/auth'
 import { computersDB, sessionsDB, usersDB } from '../db'
 import { validate } from '../middlewares/validate'
 import { createSessionSchema } from '../validators/sessionValidator'
-import { IPC, IUser } from '../types'
+import { IPC, ISession, IUser } from '../types'
 
 export const sessionRouter = Router()
 
@@ -57,4 +57,22 @@ sessionRouter.post('/', isAdmin(), validate(createSessionSchema), (req: Request,
 	}, sessionDuration)
 
 	res.status(201).json({ message: 'Сессия успешно запущена'})
+})
+
+sessionRouter.post('/:id/stop', isAdmin(), (req: Request, res: Response) => {
+	const {id} = req.params
+
+	const targetSession = sessionsDB.filter((session: ISession) => session.id === id)[0]
+
+	if(!targetSession) return res.status(404).json({ message: 'Сессия не найдена'})
+
+	const targetPc = computersDB.filter((pc: IPC) => pc.id === targetSession.pcId)[0]
+	if(!targetPc) return res.status(404).json({ message: 'Компьютер, указанный в данной сессии, не найден'})
+	if(targetPc.status !== 'BUSY') return res.status(400).json({ message: 'Сессия уже завершена'})
+	
+	computersDB.map((pc: IPC) => {
+		if(pc.id === targetSession.pcId && pc.status !== 'FREE') pc.status = 'FREE'
+	})
+
+	res.status(200).json({ message: 'Сессия принудительно завершена, компьютер свободен'})
 })
